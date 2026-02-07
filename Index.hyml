@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KING_ABHI_X – Free AI Tools</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#0f172a; color:#e5e7eb; margin:0 }
+    header { padding:20px; text-align:center; background:#020617 }
+    h1 { margin:0; color:#22d3ee }
+    section { padding:20px }
+    .card { background:#020617; border-radius:12px; padding:16px; margin-bottom:16px }
+    textarea, select, input { width:100%; padding:10px; border-radius:8px; border:none; margin:8px 0 }
+    button { padding:10px 16px; border-radius:10px; border:none; background:#22d3ee; color:#020617; font-weight:bold; cursor:pointer }
+    .images { display:grid; grid-template-columns:1fr 1fr; gap:10px }
+    img, video, audio { width:100%; border-radius:10px }
+    footer { text-align:center; padding:12px; background:#020617 }
+  </style>
+</head>
+<body>
+<header>
+  <h1>KING_ABHI_X</h1>
+  <p>Free AI Image • Image to Video • AI Voice</p>
+</header><section>
+  <div class="card">
+    <h2>🖼️ Prompt → 2 Images</h2>
+    <textarea id="prompt" placeholder="अपना AI Prompt लिखें..."></textarea>
+    <select id="model">
+      <option value="realistic">Realistic</option>
+      <option value="anime">Anime</option>
+      <option value="cartoon">Cartoon</option>
+      <option value="art">Art</option>
+      <option value="cinematic">Cinematic</option>
+    </select>
+    <button onclick="generateImages()">Generate 2 Images</button>
+    <div class="images">
+      <img id="img1" />
+      <img id="img2" />
+    </div>
+  </div>  <div class="card">
+    <h2>🎬 Image → Video</h2>
+    <input type="file" accept="image/*" />
+    <button onclick="alert('Free demo: short AI video')">Convert to Video</button>
+    <video controls></video>
+  </div>  <div class="card">
+    <h2>🎤 AI Voice Generator</h2>
+    <textarea id="voiceText" placeholder="Voice के लिए टेक्स्ट लिखें"></textarea>
+    <select id="voiceModel">
+      <option>KING_ABHI_X</option>
+      <option>Hindi Male Deep</option>
+      <option>Hindi Male Soft</option>
+      <option>Hindi Male News</option>
+      <option>Hindi Female Soft</option>
+      <option>Hindi Female Clear</option>
+      <option>Hindi Female Story</option>
+      <option>Hindi Narrator</option>
+      <option>Hindi Sad</option>
+      <option>Hindi Energetic</option>
+      <option>Hindi Calm</option>
+      <option>Hindi Devotional</option>
+      <option>Hindi Podcast</option>
+      <option>Hindi Robo</option>
+      <option>Hindi Child</option>
+    </select>
+    <button onclick="alert('Free demo voice generated')">Generate Voice</button>
+    <audio controls></audio>
+  </div>
+</section><footer>
+  © 2026 KING_ABHI_X | Free AI Website
+</footer><script>
+  function generateImages(){
+    const prompt = document.getElementById('prompt').value;
+    const model = document.getElementById('model').value;
+
+    // 🔑 REAL AI IMAGE API (example: HuggingFace / Open-source)
+    // NOTE: yahan apni FREE API KEY lagani hogi
+
+    fetch('https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer YOUR_FREE_API_KEY',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ inputs: prompt })
+    })
+    .then(res => res.blob())
+    .then(blob => {
+      document.getElementById('img1').src = URL.createObjectURL(blob);
+    });
+
+    fetch('https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer YOUR_FREE_API_KEY',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ inputs: prompt })
+    })
+    .then(res => res.blob())
+    .then(blob => {
+      document.getElementById('img2').src = URL.createObjectURL(blob);
+    });
+  }
+</script></body>
+</html>
